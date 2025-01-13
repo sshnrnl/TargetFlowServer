@@ -1,0 +1,3 @@
+perm={
+    'get-production':'produksi'
+}

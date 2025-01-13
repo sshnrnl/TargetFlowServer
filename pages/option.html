@@ -1,0 +1,101 @@
+{% block option %}
+<!-- 1. Administrator
+2. Hrd
+3. Purchasing
+4. Marketing
+5. Produksi
+6. Gudang
+7. Ppic
+8. Qc
+9. Finance
+10. Accouting -->
+
+<div id="menu-container">
+    <div id="menu"class ='inactive' >
+        <div id="menu-flex" style="padding-bottom: 4rem;">
+            <div class="option-categories">
+                <h3 class="text bold secondary"><i class="fa-solid fa-user mr-2"></i>Admin</h3>
+              </div>
+              <div class="option">
+                <h3 class="text grey"><i class="fa-solid fa-users-gear mr-2"></i>Manage Users (Progress)</h3>
+              </div>
+              <div class="option" onclick="window.location='/manage_sales_order'">
+                <h3 class="text grey"><i class="fa-solid fa-file-signature mr-2"></i>Penyetujuan Sales Order</h3>
+              </div>
+              <div class="option" onclick="window.location='/manage_pricelist'">
+                <h3 class="text grey"><i class="fa-solid fa-boxes-packing mr-2"></i>Pengaturan Price List Barang</h3>
+              </div>
+              <div class="option" onclick="window.location='/pembayaran_invoice'">
+                <h3 class="text grey"><i class="fa-solid fa-cash-register mr-2"></i>Pembayaran Invoice</h3>
+              </div>
+              <div class="option" onclick="window.location=`https://pqnbb9wp-91.asse.devtunnels.ms/`">
+                <h3 class="text grey"><i class="fa-brands fa-dev mr-2"></i>Developer Mode</h3>
+              </div>
+              <div class="option-categories">
+                <h3 class="text bold pinkish"><i class="fa-solid fa-bag-shopping mr-2"></i>Purchasing</h3>
+              </div>
+              <div class="option" onclick="window.location='/create_purchasing_invoice'">
+                <h3 class="text grey"><i class="fa-solid fa-basket-shopping mr-2"></i>Pembelian Barang</h3>
+              </div>
+              <div class="option" onclick="window.location='/view_purchase'">
+                <h3 class="text grey"><i class="fa-solid fa-receipt mr-2"></i>Lihat Invoice Pembelian</h3>
+              </div>
+
+
+              <div class="option-categories">
+                <h3 class="text bold warning"><i class="fa-solid fa-chart-simple mr-2"></i>Marketing</h3>
+              </div>
+              <div class="option" onclick="window.location='/view_ongoing_so'">
+                <h3 class="text grey"><i class="fa-solid fa-receipt mr-2"></i>Buat Invoice</h3>
+              </div>
+              <div class="option" onclick="window.location='/view_invoice'">
+                <h3 class="text grey"><i class="fa-solid fa-file-invoice mr-2"></i>Lihat Invoice</h3>
+              </div>
+              <div class="option" onclick="window.location='/add_customer'">
+                <h3 class="text grey"><i class="fa-solid fa-user-plus mr-2"></i>Tambah Customer</h3>
+              </div>
+              <div class="option" onclick="window.location='/customer'">
+                <h3 class="text grey"><i class="fa-solid fa-address-book mr-2"></i>Lihat Customer/Supplier</h3>
+              </div>
+              
+              
+              <div class="option-categories">
+                <h3 class="text bold secondary"><i class="fa-solid fa-image-portrait mr-2"></i>Sales</h3>
+              </div>
+              <div class="option" onclick="window.location='/create_sales_order'">
+                <h3 class="text grey"><i class="fa-solid fa-file-circle-plus mr-2"></i>Buat Sales Order</h3>
+              </div>
+              <div class="option" onclick="window.location='/view_sales_order'">
+                <h3 class="text grey"><i class="fa-solid fa-file-lines mr-2"></i>Lihat Sales Order</h3>
+              </div>
+              <div class="option" onclick="window.location='/pricelist'">
+                <h3 class="text grey"><i class="fa-solid fa-boxes-stacked mr-2"></i>Price List Barang</h3>
+              </div>
+              <div class="option">
+                <h3 class="text grey"><i class="fa-solid fa-bullseye mr-2"></i>Target Penjualan (Progress)</h3>
+              </div>
+              
+        </div>
+    </div>
+</div>
+<!-- init menu   -->
+<script>
+    setTimeout(() => {
+        $('#menu-flex').css('width',$('#navbar').outerWidth(true).toString()+'px');
+        $('#menu-flex').css('min-height',"calc(100vh - "+$('#navbar').outerHeight(true).toString()+'px - 3rem)');
+        document.getElementById("left-navbar").addEventListener("click", enableNavbar);
+        function enableNavbar(){
+            if($('#menu').hasClass('inactive')){
+                $('#menu').animate({opacity:'show',height:'show'},1500,'easeInOutQuint')
+                $("#menu").removeClass('inactive')
+            }
+            else{
+                $('#menu').animate({height:'hide'},1500,'easeInOutQuint')
+                $("#menu").addClass('inactive')
+            }
+
+
+        }
+    }, 1000);
+</script>
+{% endblock %}

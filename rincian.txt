@@ -1,0 +1,318 @@
+Bikin SO-
+Plafon
+Stock
+Custom PPN
+Add Harga berdasarkan satuan kecil & besar
+Hilangkan Diskon!
+
+Viewer SO-
+Belum Bayar, Jatuh Tempo
+Filter Tanggal
+Per-Sales
+
+Marketing-
+Omzet Harian
+
+Owner-
+Untung Harian
+
+Target Sales-
+Per Sales (Specific)
+Reward Target
+
+View Target-
+Buat Sales PK(ID)
+
+Omzet Penjualan Sales-
+Per Sales Per-Bulan
+Komisi bedasarkan nota yg lunas
+
+
+Pengaturan Pajak
+Ada kolom kocus dengan nama
+
+
+
+
+################################
+Cara Insert mso
+Nobuk
+Kode Sales + 0 + 2.Tahun + 5.Urut (Structur)
+Select first 1 Order by nobuk + 1
+
+Kode
+-CC
+
+NOIDP
+-MKS
+
+TGL
+-Date
+
+Null * 6
+
+
+Kocus
+
+Namcus
+
+Kowil(Kode Wilayah)
+Ada field nama kowil di kocas ambil dari situ
+
+Koseg
+''
+
+Kosal
+
+Koexp
+''
+
+Koasj
+''
+
+Komat
+''
+
+Faktor
+- 1
+
+Kurs
+- 1
+
+Jumlah
+Jumlah total smw barang
+
+Kurstax
+- 1
+
+Disc
+''
+
+Pdisc
+0
+
+Jdisc
+0
+
+PPN
+Ambil dari kocus dengan kolom kotax
+
+PPNINCL
+T
+
+PPPN
+Ambil kolom persen dari kolom kotax berdasarkan nilai PPN
+
+JPPN
+Jumlah * PPPN / 100
+
+Otax
+''
+
+Otaxincl
+F
+
+POTAX
+''
+
+JOTAX
+''
+
+Freight
+0
+
+NET
+Jumlah
+
+DP
+0
+
+JDP
+0
+
+NODP
+Null
+
+TGLDP
+Null
+
+NoFP
+Null
+
+TGLFP
+Null
+
+Koser
+Null
+
+JTEMPO
+Ambil kolom jtempo dari tabel kocus
+
+Status
+Null
+
+Konsinyasi
+F
+
+Template
+F
+
+Otorisasi
+T
+
+OTOUSR
+''
+
+OTOSTAMP
+datetime
+
+Printed
+0
+
+PRFPAJAK
+0
+
+Closed
+F
+
+Closedusr
+Null
+
+Closedstamp
+Null
+
+Batal
+F
+
+Batalusr
+Null
+
+Batalstamp
+Null
+
+LVL
+1
+
+Stamp
+''
+
+USR
+''
+
+Owner
+Kosal
+
+Ownstamp
+datetime
+
+Ketcus
+Null
+
+Ket
+Null
+
+Mobile
+T
+
+Finished
+F
+
+OTOKOSAL
+T
+
+Otokosalstamp
+datetime
+
+#################################
+
+#################################
+Cara insert MUTSO
+
+Nobuk
+- Nobuk
+
+Kode
+CC
+
+NOIDP
+MKS
+
+NOMOR
+(Auto incr)
+
+TGL
+Date
+
+Kobar
+Berdasarkan barang
+
+KOALI
+Null
+
+QTYKIRIM
+Null
+
+QTY
+Quantity
+
+SATQTY
+Dari tabel tbkvrsi ambil dari kolom kosat jika ada jika tidak ada ambil dari Kobar
+
+kvrsiqty
+Dari tabel tbkvrsi ambil dari kolom kvrsi jika ada jika tidak ada return 1
+
+Harga
+HJUAL dari Kobar
+
+SATHRG
+selalu ambil kosat dari Kobar
+
+KVRSIHARGA
+1
+
+Disc
+0
+
+Tdisc
+p 
+
+Jdisc
+0
+
+Jumlah
+qty * knvrsiqty * Harga
+
+Kodep
+Null
+
+Kopro
+Null
+
+Template
+F 
+
+Otorisasi
+T 
+
+Batal
+F 
+
+Stamp
+Null
+
+USR
+Null
+
+Owner
+Kosal
+
+Ownstamp
+datetime
+
+Ket
+Null
+
+Nambar
+Nambar
+
+#################################

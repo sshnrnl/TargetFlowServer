@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/mks/fonts.css" />
+    <link rel="stylesheet" href="../assets/css/mks/color.css" />
+    <link rel="stylesheet" href="../assets/css/mks/util.css" />
+    <link rel="stylesheet" href="../assets/css/bulma/bulma.css" />
+    <link rel="stylesheet" href="../assets/css/mks/sales_target.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <script src="../assets/js/jquery/jquery.min.js"></script>
+    <script src="../assets/js/bulma/bulma.js"></script>
+    <script src="../assets/js/hori/create_sales_target.js"></script>
+    <title>Create Sales Target</title>
+</head>
+
+<body>
+    <input type="date" class="demo">
+    <div id="barang-picker">
+        <div class="modal"></div>
+        <div id="picker-container">
+            <div id="picker-header">
+                <h2 class="center text white h1-5-size">Pilih</h2>
+                <h2 class="center text white h1-5-size">Barang</h2>
+            </div>
+            <div id="search-container">
+                <div class="barang-search-bar">
+                <i class="fa-solid fa-magnifying-glass text grey"></i>
+                <input id="input-search" type="text" placeholder="Cari..." onblur="search(this.value)">
+                <i class="fa-solid fa-arrow-right text grey" onclick="search(document.getElementById('input-search').value)"></i>
+            </div>
+            <h3 class="text grey center mt-2">Menampilkan <span class="search-res">0</span> barang</h3>
+            </div>
+            <div id="picker-body">
+                <div id="picker-content-skeleton">
+                    <div class="skeleton-selection-barang">
+                        <h3 class="text-container skeleton-animate rounded mx-2">
+                            <span class="text grey text-container-inner hidden">s</span>
+                        </h3>
+                    </div>
+                </div>
+                <div id="picker-content" style="display: none;">
+                    <div class="selection-barang template" onclick="activateBarang(this)">
+                        <h3 class="text-container nambar">
+                            <span class="text grey text-container-inner">SUMPIT IMPORT SEIKA 50 PSG PRODUKSI BARU</span>
+                        </h3>
+                        <div class="fader fader-left"></div>
+                        <div class="fader fader-right"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="picker-footer" onclick="hideFilter()">
+                <!-- <h3 class="text center pinkish">Back</h3> -->
+                <h3 class="text center confirm">Konfirmasi</h3>
+            </div>
+        </div>
+        <div id="konfirmasi-container">
+            <div id="picker-header">
+                <h2 class="center text white h1-5-size">Konfirmasi</h2>
+                <h2 class="center text white h1-5-size">Kembali</h2>
+            </div>
+
+            <h3 class="text center grey">Pastikan barang dan tanggal sudah sesuai dengan yang diinginkan sebelum diupload!</h3>
+            <div id="konfirmasi-footer">
+                <div id="konfirmasi-kembali" onclick="hideConfirmation()">
+                    <h3 class="text white center">Kembali</h3>
+                </div>
+                <div id="konfirmasi-selesai">
+                    <h3 class="text white center">Upload</h3>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="main-container">
+        <div id="navbar">
+            <div id="left-navbar">
+                <i class="fa-solid fa-ellipsis-vertical h2-size"></i>
+            </div>
+            <div id="right-navbar">
+                <img id="navbar-profile"
+                    src="https://lh3.googleusercontent.com/a/ACg8ocLlTmGcOEHjlgYauMMaDapHGrnnq74K9mseaA8SB9_9TKg=s96-c-rg-br100">
+                <h2>Hi, <span class="text secondary shadow-secondary">Shan</span></h2>
+                <div id="role">
+                    <i class="fa-regular fa-square-plus text white"></i>
+                    <h2 class="text semi-bold white">Admin</h2>
+                </div>
+                <i class="fa-solid fa-right-from-bracket h2-size"></i>
+            </div>
+        </div>
+        <div id="content-header">
+            <h1 class="text center h-0-5-size">Pembuatan</h1>
+            <h1 class="text center h-0-5-size secondary">Target <span class="text circled primary">Sales</span></h1>
+            <div class="tambah-barang mt-2 bg-tersier" onclick="showFilter()">
+                
+                <h3 class="text white center"><i class="fa-solid fa-cart-plus text white mr-2"></i>Tambah Barang</h3>
+            </div>
+        </div>
+        <div id="content-body" class="mt-4">
+            <div class="content-container pb-2">
+                <div class="product-section">
+                    <h3>Produk</h3>
+                </div>
+                <div class="qty-section">
+                    <h3>Quantity</h3>
+                </div>
+            </div>
+            <div class="animate-container">
+                <div class="content-container p-5">
+                    <div class="product-section">
+                        <h3 class="text grey namabarang">SUMPIT IMPORT SEIKA <span class="text primary">1 BAL: 500Pack</span></h3>
+                    </div>
+                    <div class="qty-section w-2 input-container">
+                        <input class="text grey" min="1" placeholder="0" type="number" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                    </div>
+    
+                </div>
+
+            </div>
+            
+            
+        </div>
+    </div>
+    <!-- dummy margin -->
+    <div id="bottom-navbar-hidden" class="fades hidden">
+        <div class="konfirmasi-barang bg-greenish" >
+            <h3 class="text white center"><i class="fa-solid fa-calendar text white mr-2"></i>Konfirmasi Target</h3>
+        </div>
+    </div>
+    <!-- ------ -->
+    <div id="bottom-navbar" class="fades">
+        <div class="konfirmasi-barang bg-greenish" onclick="showCalendar()">
+            <h3 class="text white center"><i class="fa-solid fa-calendar text white mr-2"></i>Pilih Tanggal</h3>
+        </div>
+    </div>
+</body>
+
+<!-- function for moving text on overflow -->
+<script>
+    
+</script>
+
+<!-- set max-width for picker-content with height of skeleton-selection-barang -->
+<script>
+    function SetSizePickerContent(){
+        $('#picker-content').css('max-height',`calc(${($('.skeleton-selection-barang').outerHeight(true)*4).toString()+'px'} + ${0.5*3}rem)`)
+        $('#picker-body').css('height',`calc(${($('.skeleton-selection-barang').outerHeight(true)*4).toString()+'px'} + ${0.5*3}rem)`)
+    }
+</script>
+
+<!-- duplicating skeleton and inserting into its body -->
+<script>
+     for (var i = 0; i < 3; i++) {
+        $("#picker-content-skeleton>.skeleton-selection-barang:first").clone().appendTo('#picker-content-skeleton')
+    }
+</script>
+
+<!-- init -->
+<script>
+    SetSizePickerContent()
+    setTimeout(() => {
+        loadBarang()
+    }, 500);
+</script>
+
+
+<!-- initiate bulma calendar -->
+<script>
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+    var yyyy = today.getFullYear();
+    today = yyyy + '-' + mm + '-' + dd;
+    console.log(today)
+    min = '2023-11-07'
+    var defaultOptions = {
+        color: 'primary',
+        isRange: true,
+        allowSameDayRange: true,
+        lang: 'en-US',
+        startDate: undefined,
+        endDate: undefined,
+        minDate: undefined,
+        maxDate: undefined,
+        disabledDates: [],
+        displayMode: "dialog",
+        disabledWeekDays: undefined,
+        highlightedDates: [],
+        weekStart: 0,
+        dateFormat: 'dd-MM-yyyy',
+        enableMonthSwitch: true,
+        enableYearSwitch: true,
+        displayYearsCount: 50,
+        minuteSteps: 1
+    };
+    var myCal = bulmaCalendar.attach('.demo', defaultOptions);
+    $(".modal-background").css('display', 'none');
+    $(".datetimepicker-footer>button:last-child").click(function () {
+        hideCalendar()
+    })
+    $('.datetimepicker-footer-validate:first-child').clone().removeClass('is-hidden').appendTo('.datetimepicker-footer')
+    $(".datetimepicker-footer>button:last-child").click(function () {
+        showConfirmation()
+        myCal[0].onValidateClickDateTimePicker(myCal[0])
+    })
+</script>
+</html>

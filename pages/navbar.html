@@ -1,0 +1,15 @@
+<div id="navbar">
+    <div id="left-navbar">
+        <i class="fa-solid fa-ellipsis-vertical h2-size"></i>
+    </div>
+    <div id="right-navbar">
+        <img id="navbar-profile"
+            src="{{profile}}">
+        <h2>Hi, <span class="text secondary shadow-secondary">{{user}}</span></h2>
+        <div id="role">
+            <i class="fa-regular fa-square-plus text white"></i>
+            <h2 class="text semi-bold white">{{role}}</h2>
+        </div>
+        <i class="fa-solid fa-right-from-bracket h2-size" onclick="$('#main-container').animate({opacity:'hide'},1500,'easeInOutQuint');setTimeout(() => {window.location='/logout'}, 2000);"></i>
+    </div>
+</div>

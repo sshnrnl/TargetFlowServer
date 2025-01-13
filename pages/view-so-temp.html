@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/mks/fonts.css" />
+    <link rel="stylesheet" href="../assets/css/mks/color.css" />
+    <link rel="stylesheet" href="../assets/css/mks/so.css" />
+    <link rel="stylesheet" href="../assets/css/mks/util.css" />
+    <link rel="stylesheet" href="../assets/css/mks/sales_target.css" />
+    <link rel="stylesheet" href="../assets/css/mks/manage_so.css" />
+    <link rel="stylesheet" href="../assets/css/noti/noti.css">
+    <link rel="stylesheet" href="../assets/css/mks/toogle.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <script src="../assets/js/jquery/jquery.min.js"></script>
+    <script src="../assets/js/noti/noti.js"></script>
+    <title>SO Viewer</title>
+</head>
+
+<body>
+    <div class="notifications"></div>
+    <div id="barang-picker" style="display: none;">
+        <div class="modal" style="display: none;"></div>
+        <div id="picker-container" style="display: none;">
+            <div id="picker-header">
+                <h2 class="center text white h1-5-size" id="nama-sales-order">NAMA CUSTOMER</h2>
+            </div>
+            <div id="picker-body">
+                <div class="so-part-container">
+                    <h3 class="text primary semi-bold"><i class="fa-solid fa-receipt mr-2"  ></i>ID Sales Order: <span id="id-sales-order" class="h3-size bold text grey">FJ-24-01-00001</span></h3>
+                </div>
+                <div class="so-part-container">
+                    <h3 class="text primary semi-bold"><i class="fa-solid fa-user mr-2"></i>Sales: <span id="sales-sales-order" class="h3-size bold text grey">Bunga</span></h3>
+                </div>
+                <div class="so-part-container">
+                    <h3 class="text primary semi-bold"><i class="fa-regular fa-clock mr-2"></i>Term: <span id="term-sales-order" class="h3-size bold text grey">0 Hari</span></h3>
+                </div>
+                <div class="so-part-container">
+                    <h3 class="text primary semi-bold"><i class="fa-regular fa-calendar mr-2"></i>Tanggal: <span id="tgl-sales-order" class="h3-size bold text grey">18 Agustus 2024 - 18 Agustus 2024</span></h3>
+                </div>
+                <!-- <div class="so-left-right">
+                    
+
+                </div> -->
+                
+            </div>
+            <div id="catatan-customer">
+                <!-- <h3 class="text reject thin">*3 Nota Belum Bayar - Rp 250.000.000</h3> -->
+                
+            </div>
+            <div id="picker-content-container">
+                <div class="animate-container">
+                    <div class="content-container solid pb-2">
+                        <div class="product-section">
+                            <h3 class="text primary bold"><i class="fa-solid fa-boxes-stacked mr-2 text"></i>Produk (<span id="jumlah-sales-order" class="jumlah-item text grey bold">4 Items</span>)</h3>
+                        </div>
+                        <h3 class="text primary bold">Harga</h3>
+                        
+                    </div>
+                </div>
+                <div id="picker-content-container-scroll">
+                    <div class="animate-container template">
+                        <div class="content-container p-5">
+                            <div class="product-section">
+                                <h3 class="text grey bold sales-order-namabarang">SUMPIT IMPORT SEIKA 50 PRODUK BARU KALI KAN</h3>
+                            </div>
+                            <div id="price-container">
+                                <h3 class="text primary sales-order-totalhargabarang bold end">Rp 2.000.000.000</h3>
+                                <h3 class="text grey end thin"><span class="picker-price text secondary semi-bold sales-order-hargabarang">Rp 200.000</span> (<span class="picker-disc text pinkish sales-order-diskonbarang">20%</span>) x <span class="sales-order-qtybarang text warning">5</span> </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="container-harga">
+                    <div id="harga" class="total-container">
+                        <h3 class="text bold secondary">HARGA: </h3>
+                        <h3 class="w-4 text end grey"><span id="sales-order-harga">0</span></h3>
+                    </div>
+                    <div id="diskon" class="total-container">
+                        <h3 class="text bold pinkish">DISKON: </h3>
+                        <h3 class="w-4 text end grey"><span id="sales-order-diskon">0</span></h3>
+                    </div>
+                    <div id="ppn" class="total-container">
+                        <div style="display: flex;">
+                            <input id="sales-order-ppn-checkbox" onchange="modifyPPN()" name="sales-order-ppn-checkbox" type="checkbox" value="yes">
+                        </div>
+                        <h3 class="text bold warning">PPN: </h3>
+                        <h3 class="w-4 text end grey"><span id="sales-order-ppn">0</span></h3>
+                    </div>
+                    <div id="grand-total" class="total-container">
+                        <h3 class="text bold primary">GRAND TOTAL: </h3>
+                        <h3 class="w-4 text end grey"><span id="sales-order-total-harga">0</span></h3>
+                    </div>
+                </div>
+                
+                
+                
+
+            </div>
+
+            
+            
+                
+                
+            
+            <div id="picker-footer">
+                <div class="button-footer warning edit-button" onclick="editSalesOrder()">
+                    <h3 class="text center white bold"><i class="fa-solid fa-pen-to-square mr-2"></i>Edit</h3>
+                </div>
+                <div class="button-footer pinkish" onclick="hideSalesOrder()">
+                    <h3 class="text center white bold"><i class="fa-solid fa-xmark mr-2"></i>Tutup</h3>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div id="main-container">
+        {% include "navbar.html"%}
+        {% include "option.html"%}
+        <div id="salesorder">
+            <div class="m-5">
+                <h1 class="text primary">Sales <span class="text secondary ">order</span> <span
+                        class="text circled primary">review</span></h1>
+                <h2 class="text grey h3-size">Showing <span class="search-result">0</span> results</h2>
+            </div>
+            <div id="so-flex">
+                <div class="skeleton-container">
+                    <div class="skele-container">
+                        <div class="header-so-container">
+                            <div class="left-header-so-container skeleton"></div>
+                            <div class="right-header-so">
+                                <h2 class="skeleton text bold rounded-top">3080777</h2>
+                                <h3 class="text another semi-bold warning shadow-warning rounded-bot skeleton">CV.
+                                    1</h2>
+                                    <h3 class="skeleton rounded-top mt-2 text grey">Rp19.600.000,00
+                                    </h3>
+                                    <h3 class="text grey skeleton"><span class="hidden">4</span> Items •
+                                        <span>18 Agustus 2023</span></h3>
+                                    <h3 class="text grey skeleton rounded-bot"><span class="hidden">4</span> Items •
+                                        <span>18 Agustus 2023</span></h3>
+                            </div>
+                        </div>
+                        <div class="body-so-container mt-4">
+                            <div style="visibility: hidden;" class="left-header-so-container">
+                            </div>
+                            <div class="content-body-so-container skeleton rounded">
+                                <i class="bold primary fa-solid fa-user h3-size hidden"></i>
+                                <h3 class="text primary semi-bold hidden"><span
+                                        class="">Anto</span></h3>
+                            </div>
+                        </div>
+                        <div class="jatuh-tempo">
+                            <h1 class="h-0-5-size">JT</h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="so-container template" onclick="parseSalesOrderValue(this)">
+                    <div class="header-so-container">
+                        <div class="left-header-so-container"></div>
+                        <div class="right-header-so-container">
+                            <h2 class="so-invoice-id text bold shadow-black">3080777</h2>
+                            <h3 class="so-customer text another semi-bold warning shadow-warning">CV. CAHAYA MAKMUR
+                                PACKINDO</h2>
+                                <h3 class="mt-2 text grey so-grand-total">Rp19.600.000,00
+                                </h3>
+                                <h3 class="text grey"><i class="fa-solid fa-boxes-stacked"></i><span class="so-items-count"> 4</span> Items • <i class="fa-regular fa-clock"></i> <span
+                                        class="so-term">0 Days</span></h3>
+                                <h3 class="text grey"><i class="fa-regular fa-calendar"></i><span class="so-date">18 Agustus 2024</span> - <span
+                                class="so-due-date">0 Days</span></h3>
+                        </div>
+                    </div>
+                    <div class="body-so-container mt-4">
+                        <div style="visibility: hidden;" class="left-header-so-container">
+                        </div>
+                        <div class="content-body-so-container">
+                            <i class="bold primary fa-solid fa-user h3-size"></i>
+                            <h3 class="text primary semi-bold"><span
+                                class="so-code-sales">000</span> - <span
+                                class="so-name-sales">Anto</span></h3>
+                        </div>
+                    </div>
+                    <div class="jatuh-tempo">
+                        <h1 class="h-0-5-size text reject-75">DITOLAK</h1>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</body>
+
+<!-- Clone Skeleton -->
+<script>
+    var skele=9
+    var element=0
+    var enableEOP=0
+    for (var i = 0; i < 9; i++) {
+        $(".skeleton-container>.skele-container:first").clone().appendTo('.skeleton-container')
+        $(".skeleton").addClass("skeleton-animate")
+    }
+    
+</script>
+<script src="../assets/js/hori/get_so.js"></script>
+<script src="../assets/js/noti/noti-extension.js"></script>
+<script src="../assets/js/hori/manage_sales_order.js"></script>
+
+
+
+
+<!-- End of Page Handler -->
+<script>
+    loadQuery(element);
+    $(window).scroll(function() {
+    if(($(window).scrollTop() + $(window).height() >= $(document).height() - 5000) && enableEOP){
+        console.log("end")
+        enableEOP=0
+        loadQuery(element);
+    }
+    });
+</script>
+
+
+</html>

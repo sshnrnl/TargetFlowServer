@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link rel="stylesheet" href="../assets/css/mks/util.css">
+    <link rel="stylesheet" href="../assets/css/mks/color.css">
+    <link rel="stylesheet" href="../assets/css/mks/fonts.css">
+    <link rel="stylesheet" href="../assets/css/mks/login.css">
+    <link rel="stylesheet" href="../assets/css/noti/noti.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <script src="../assets/js/jquery/jquery.min.js"></script>
+    <script src="../assets/js/hori/login.js"></script>
+    <script src="../assets/js/noti/noti.js"></script>
+</head>
+<body>
+    <div class="notifications"></div>
+    <div id="main-container" style="display: none;">
+        <div id="login-form">
+            <div id="form-header">
+                <h1 class="text center ">MKS Mobile</h1>
+                <h1 class="text center secondary">Login <span class="circled text primary">Page</span></h1>
+                <h3 class="mt-3 text center grey ">Mohon gunakan akun yang sudah diberikan oleh <span class="text  ">admin</span>! <span class="text  ">Penyalahgunaan aplikasi</span> dapat berakibat <span class="text  ">fatal</span>!</h3>
+            </div>
+            <div id="form-body">
+                <div id="name-container">
+                    <h3 class="text bold"><i class="text primary fa-solid fa-user mr-2"></i> Username</h3>
+                    <input type="text" class="mt-3 username" onkeydown="javascript:if (event.keyCode == 13) document.getElementById('passwd').focus()">
+                </div>
+                <div id="name-container">
+                    <h3 class="text bold"><i class="text primary fa-solid fa-lock mr-2"></i> Password</h3>
+                    <input type="password" id="passwd" class="mt-3 password" onkeydown="javascript:if (event.keyCode == 13) {login();demonotis[0]()}">
+                </div>
+                <div id="login-button" onclick="login(); demonotis[0]()">
+                    <h3 class="text bold white center" style="width: 100%;"><i class="fa-solid fa-right-to-bracket mr-2 text bold white"></i>Login</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="../assets/js/noti/noti-extension.js"></script>
+<script>
+    $('#main-container').animate({opacity:'show'},1500,'easeInOutQuint')
+</script>
+</html>

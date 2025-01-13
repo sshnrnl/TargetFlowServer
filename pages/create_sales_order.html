@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../assets/css/mks/fonts.css" />
+    <link rel="stylesheet" href="../../assets/css/mks/color.css" />
+    <link rel="stylesheet" href="../../assets/css/mks/util.css" />
+    <link rel="stylesheet" href="../../assets/css/bulma/bulma.css" />
+    <link rel="stylesheet" href="../../assets/css/mks/sales_target.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <script src="../../assets/js/jquery/jquery.min.js"></script>
+    <script src="../../assets/js/bulma/bulma.js"></script>
+    <script src="../../assets/js/hori/create_sales_order.js"></script>
+    <title>Create Sales Order</title>
+</head>
+
+<body>
+    <div id="barang-picker">
+        <div class="modal"></div>
+        <div id="picker-container">
+            <div id="picker-header">
+                <h2 class="center text white h1-5-size">Pilih</h2>
+                <h2 class="center text white h1-5-size">Barang</h2>
+            </div>
+            <div id="search-container">
+                <div class="barang-search-bar">
+                <i class="fa-solid fa-magnifying-glass text grey"></i>
+                <input id="input-search" type="text" placeholder="Cari..." onblur="search(this.value)">
+                <i class="fa-solid fa-arrow-right text grey" onclick="search(document.getElementById('input-search').value)"></i>
+            </div>
+            <h3 class="text grey center mt-2 search-size">Menampilkan <span class="search-res">0</span> barang</h3>
+            </div>
+            <div id="picker-body">
+                <div id="picker-content-skeleton">
+                    <div class="skeleton-selection-barang">
+                        <h3 class="text-container skeleton-animate rounded mx-2">
+                            <span class="text grey text-container-inner hidden">s</span>
+                        </h3>
+                    </div>
+                </div>
+                <div id="picker-content" style="display: none;">
+                    <div class="selection-barang template" onclick="activateBarang(this)">
+                        <h3 class="text-container nambar">
+                            <span class="text grey text-container-inner">SUMPIT IMPORT SEIKA 50 PSG PRODUKSI BARU</span>
+                        </h3>
+                        <div class="fader fader-left"></div>
+                        <div class="fader fader-right"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="picker-footer" onclick="hideFilterBarang()">
+                <!-- <h3 class="text center pinkish">Back</h3> -->
+                <h3 class="text center confirm">Konfirmasi</h3>
+            </div>
+        </div>
+        <div id="customer-picker-container">
+            <div id="picker-header">
+                <h2 class="center text white h1-5-size">Pilih</h2>
+                <h2 class="center text white h1-5-size">Customer</h2>
+            </div>
+            <div id="search-container">
+                <div class="barang-search-bar">
+                <i class="fa-solid fa-magnifying-glass text grey"></i>
+                <input id="input-search" type="text" placeholder="Cari..." onblur="searchCust(this.value)">
+                <i class="fa-solid fa-arrow-right text grey" onclick="search(document.getElementById('input-search').value)"></i>
+            </div>
+            <h3 class="text grey center mt-2 search-size">Menampilkan <span class="search-res-cus">0</span> customer</h3>
+            </div>
+            <div id="customer-picker-body">
+                <div id="customer-picker-content-skeleton">
+                    <div class="customer-skeleton-selection-barang">
+                        <h3 class="text-container skeleton-animate rounded mx-2">
+                            <span class="text grey text-container-inner hidden">s</span>
+                        </h3>
+                    </div>
+                </div>
+                <div id="customer-picker-content" style="display: none;">
+                    <div class="customer-selection-barang template" onclick="activateCustomer(this)">
+                        <h3 class="text-container namcus">
+                            <span class="text grey text-container-inner">SUMPIT IMPORT SEIKA 50 PSG PRODUKSI BARU</span>
+                        </h3>
+                        <div class="fader fader-left"></div>
+                        <div class="fader fader-right"></div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div id="picker-footer" onclick="hideFilterCustomer()">
+                <h3 class="text center confirm">Konfirmasi</h3>
+            </div>
+        </div>
+        <div id="konfirmasi-container">
+            <div id="picker-header">
+                <h2 class="center text white h1-5-size">Konfirmasi</h2>
+                <h2 class="center text white h1-5-size">Kembali</h2>
+            </div>
+
+            <h3 class="text center grey">Pastikan barang, harga dan customer sudah sesuai dengan yang diinginkan sebelum diupload!</h3>
+            <div id="konfirmasi-footer">
+                <div id="konfirmasi-kembali" onclick="hideConfirmation()">
+                    <h3 class="text white center">Kembali</h3>
+                </div>
+                <div id="konfirmasi-selesai" onclick="postTarget()">
+                    <h3 class="text white center">Upload</h3>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <div id="max-w">
+        <div id="main-container">
+            
+            {% include "navbar.html"%}
+            {% include "option.html"%}
+
+            <div id="content-header">
+                <h1 class="text center">Pembuatan</h1>
+                <h1 class="text center secondary">Sales <span class="text circled primary">Order</span></h1>
+                <div id="content-button-container">
+                    <div class="pilih-customer mt-2 bg-secondary" onclick="showFilterCustomer()">
+                        <i class="fa-solid fa-user text white"></i>
+                        <h3 class="text white center">Pilih Customer</h3>
+                    </div>
+                    <div class="tambah-barang mt-2 bg-pinkish" onclick="showFilterBarang()">
+                        <i class="fa-solid fa-cart-plus text white"></i>
+                        <h3 class="text white center">Tambah Barang</h3>
+                    </div>
+                </div>
+            </div>
+            <div id="content-body" class="mt-4">
+                <div id="picker-header" class="mb-4" style="background-color: var(--tersier);    padding: 1.25rem 2rem;">
+                    <h2 class="center text white h1-5-size nama-customer" style="max-width: 60%;">NAMA CUSTOMER</h2>
+                    <!-- <h2 class="center text white h1-5-size">Kembali</h2> -->
+                </div>
+                <div class="content-container pb-2">
+                    <div class="product-section">
+                        <h3>Produk</h3>
+                    </div>
+                    <div class="qty-section w-2">
+                        <h3 class="text center">Quantity</h3>
+                    </div>
+                    <div class="harga-section w-3">
+                        <h3 class="text center">Harga</h3>
+                    </div>
+                    <div class="diskon-section w-2">
+                        <h3 class="text center">Diskon</h3>
+                    </div>
+                    <div class="ha-section w-3">
+                        <h3 class="text center">Harga Akhir</h3>
+                    </div>
+                    
+                </div>
+    
+                <div class="animate-container template">
+                    <div class="content-container p-5">
+                        <div class="product-section">
+                            <h3 class="text grey namabarang">SUMPIT IMPORT SEIKA 50 PRODUK BARU KALI KAN</h3>
+                        </div>
+                        <div class="qty-section wm-2 input-container">
+                            <input class="text grey qty" value="1" min="1" placeholder="0" type="number" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : 0;updatePrice(this.name)">
+                        </div>
+                        <div class="qty-section wm-3 input-container">
+                            <input class="text grey harga" value="0" min="1" placeholder="0" type="number" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : 0;updatePrice(this.name)">
+                        </div>
+                        <div class="qty-section wm-2 input-container">
+                            <input class="text grey disc" value="0" min="1" placeholder="0" type="number" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : 0;updatePrice(this.name)">
+                        </div>
+                        <div class="qty-section wm-3 input-container bg-white">
+                            <input class="text grey total-harga" value="0" disabled min="1" placeholder="0" type="number" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="term-total-container">
+                <div id="term-container">
+                    <h3>Sales: </h3>
+                    <input class="text grey disc no-pad w-3 sales bold" placeholder="Nama" value="{{sales_name}}" disabled oninput="this.value=this.value.toUpperCase()">
+                </div>
+                <div id="total" class="total-container">
+                    <h3 class="text ">GRAND TOTAL: </h3>
+                    <h3 class="w-4 text end grey">Rp<span id="total-price">0</span></h3>
+                </div>
+            </div>
+            <!-- <div id="term-total-container">
+                <div id="term-container">
+                    <h3>Term: </h3>
+                    <input class="text grey disc no-pad wm-2 term" value="0" min="1" placeholder="0" type="number" oninput="this.value = !!this.value && Math.abs(this.value) >= 0 ? Math.abs(this.value) : null;">
+                </div> -->
+                <!-- <div id="grand-total" class="total-container">
+                    <h3 class="text ">GRAND TOTAL: </h3>
+                    <h3 class="w-4 text end grey">Rp<span id="grand-total-price">0</span></h3>
+                </div> -->
+                <!-- <div id="total-ppn" class="total-container">
+                    <h3 class="text ">ESTIMASI PPN: </h3>
+                    <h3 class="w-4 text end grey">Rp<span id="total-ppn-price">0</span></h3>
+                </div> -->
+            <!-- </div> -->
+            
+           
+            <!-- dummy margin -->
+            <div id="bottom-navbar-hidden" class="fades hidden">
+                <div class="konfirmasi-barang bg-greenish" >
+                    <h3 class="text white center"><i class="fa-solid fa-calendar text white mr-2"></i>Konfirmasi Target</h3>
+                </div>
+            </div>
+        </div>
+        
+        <!-- ------ -->
+        <div id="bottom-navbar" class="fades">
+            <div class="konfirmasi-barang bg-greenish" onclick="showConfirmation()">
+                <h3 class="text white center"><i class="fa-solid fa-check text white mr-2"></i>Konfirmasi</h3>
+            </div>
+        </div>
+
+    </div>
+    
+</body>
+
+<!-- set max-width for picker-content with height of skeleton-selection-barang -->
+<script>
+    function SetSizePickerContent(){
+        $('#picker-content, #customer-picker-content').css('max-height',`calc(${($('.customer-skeleton-selection-barang').outerHeight(true)*4).toString()+'px'} + ${0.5*3}rem)`)
+        $('#picker-body,#customer-picker-body').css('height',`calc(${($('.customer-skeleton-selection-barang').outerHeight(true)*4).toString()+'px'} + ${0.5*3}rem)`)
+    }
+</script>
+
+<!-- duplicating skeleton and inserting into its body -->
+<script>
+     for (var i = 0; i < 3; i++) {
+        $("#picker-content-skeleton>.skeleton-selection-barang:first").clone().appendTo('#picker-content-skeleton')
+        $("#customer-picker-content-skeleton>.customer-skeleton-selection-barang:first").clone().appendTo('#customer-picker-content-skeleton')
+    }
+</script>
+
+<!-- init -->
+<script>
+    setTimeout(() => {
+    SetSizePickerContent()
+
+        
+    }, 1);
+    setTimeout(() => {
+        loadBarang()
+        loadCustomer()
+    }, 1500);
+</script>
+</html>

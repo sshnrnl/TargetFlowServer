@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/mks/fonts.css" />
+    <link rel="stylesheet" href="../assets/css/mks/color.css" />
+    <link rel="stylesheet" href="../assets/css/mks/so.css" />
+    <link rel="stylesheet" href="../assets/css/mks/util.css" />
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <script src="../assets/js/jquery/jquery.min.js"></script>
+    <title>SO Viewer</title>
+</head>
+
+<body>
+    <div id="main-container">
+        <div id="navbar">
+            <div id="left-navbar">
+                <i class="fa-solid fa-ellipsis-vertical h2-size"></i>
+            </div>
+            <div id="right-navbar">
+                <img id="navbar-profile"
+                    src="https://lh3.googleusercontent.com/a/ACg8ocLlTmGcOEHjlgYauMMaDapHGrnnq74K9mseaA8SB9_9TKg=s96-c-rg-br100">
+                <h2>Hi, <span class="text secondary shadow-secondary">Shan</span></h2>
+                <div id="role">
+                    <i class="fa-regular fa-square-plus text white"></i>
+                    <h2 class="text semi-bold white">Admin</h2>
+                </div>
+                <i class="fa-solid fa-right-from-bracket h2-size"></i>
+            </div>
+        </div>
+        {% include "option.html"%}
+
+        <div id="salesorder">
+            <div class="m-5">
+                <h1 class="text primary">Sales <span class="text secondary ">order</span> <span
+                        class="text circled primary">recap</span></h1>
+                <h2 class="text grey h3-size">Showing <span class="search-result">0</span> results</h2>
+            </div>
+            <div id="so-flex">
+                <div class="skeleton-container">
+                    <div class="skele-container">
+                        <div class="header-so-container">
+                            <div class="left-header-so-container skeleton"></div>
+                            <div class="right-header-so">
+                                <h2 class="skeleton text bold rounded-top">3080777 • <span
+                                        class="text shadow-secondary secondary hidden">Finished</span></h2>
+                                <h3 class="text another semi-bold warning shadow-warning rounded-bot skeleton">CV.
+                                    1</h2>
+                                    <h3 class="skeleton rounded-top mt-2 text grey">Rp19.600.000,00 • <span
+                                            class="text confirm hidden">Lunas</span>
+                                    </h3>
+                                    <h3 class="text grey skeleton"><span class="hidden">4</span> Items •
+                                        <span>18 Agustus 2023</span></h3>
+                                    <h3 class="text grey skeleton rounded-bot"><span class="hidden">4</span> Items •
+                                        <span>18 Agustus 2023</span></h3>
+                            </div>
+                        </div>
+                        <div class="body-so-container mt-4">
+                            <div style="visibility: hidden;" class="left-header-so-container">
+                            </div>
+                            <div class="content-body-so-container skeleton rounded">
+                                <i class="bold primary fa-solid fa-user h3-size hidden"></i>
+                                <h3 class="text primary semi-bold hidden"><span class="">002</span> - <span
+                                        class="">Anto</span></h3>
+                            </div>
+                        </div>
+                        <div class="jatuh-tempo">
+                            <h1 class="h-0-5-size"></h1>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="so-container template">
+                    <div class="header-so-container">
+                        <div class="left-header-so-container"></div>
+                        <div class="right-header-so-container">
+                            <h2 class="so-invoice-id text bold shadow-black">3080777 • <span
+                                    class="text shadow-secondary secondary so-invoice-status">Finished</span></h2>
+                            <h3 class="so-customer text another semi-bold warning shadow-warning">CV. CAHAYA MAKMUR
+                                PACKINDO</h2>
+                                <h3 class="mt-2 text grey so-grand-total">Rp19.600.000,00 • <span
+                                        class="text confirm so-status-pembayaran">Lunas</span>
+                                </h3>
+                                <h3 class="text grey"><i class="fa-solid fa-boxes-stacked"></i><span class="so-items-count"> 4</span> Items • <i class="fa-regular fa-clock"></i> <span
+                                        class="so-term">0 Days</span></h3>
+                                <h3 class="text grey"><i class="fa-regular fa-calendar"></i><span class="so-date">18 Agustus 2024</span> - <span
+                                class="so-due-date">0 Days</span></h3>
+                        </div>
+                    </div>
+                    <div class="body-so-container mt-4">
+                        <div style="visibility: hidden;" class="left-header-so-container">
+                        </div>
+                        <div class="content-body-so-container">
+                            <i class="bold primary fa-solid fa-user h3-size"></i>
+                            <h3 class="text primary semi-bold"><span class="so-code-sales">002</span> - <span
+                                    class="so-name-sales">Anto</span></h3>
+                        </div>
+                    </div>
+                    <div class="jatuh-tempo">
+                        <h1 class="h-0-5-size"></h1>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+</body>
+
+<!-- Clone Skeleton -->
+<script>
+    var skele=9
+    var element=0
+    var enableEOP=0
+    for (var i = 0; i < 9; i++) {
+        $(".skeleton-container>.skele-container:first").clone().appendTo('.skeleton-container')
+        $(".skeleton").addClass("skeleton-animate")
+    }
+    
+</script>
+<script src="../assets/js/hori/get_so.js"></script>
+
+
+
+<!-- End of Page Handler -->
+<script>
+    loadQuery(element);
+    $(window).scroll(function() {
+    if(($(window).scrollTop() + $(window).height() >= $(document).height() - 5000) && enableEOP){
+        console.log("end")
+        enableEOP=0
+        loadQuery(element);
+    }
+    });
+</script>
+
+
+</html>
