@@ -1,6 +1,5 @@
 Flask==3.1.0
 Flask-Cors==5.0.0  # Optional if you need CORS support
-Flask-SocketIO==5.5.1  # Optional if using WebSockets
 PyJWT==2.10.1  # JSON Web Token support for authentication
 python-dotenv==1.0.1  # To load environment variables from .env file
 cryptography==44.0.0  # For secure encryption/decryption
