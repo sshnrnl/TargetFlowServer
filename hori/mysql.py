@@ -22,7 +22,7 @@ def sqlconnect():
 def sqlcommit(connection):
     connection.commit()
 
-# Inserting row to SQl Database
+# Inserting row to SQl Databas
 def sqlinsert(cursor,tables,values):
     return cursor.execute(f'INSERT INTO {tables} VALUES ({values})')
 
