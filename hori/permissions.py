@@ -1,3 +1,0 @@
-perm={
-    'get-production':'produksi'
-}

@@ -12,10 +12,10 @@ import mysql.connector
 # Connecting to SQL Database
 def sqlconnect():
     return mysql.connector.connect(
-        host="103.145.227.148",
-        user="rajawa19_mks",
-        password="nDYsy}*F[u7v",
-        database="rajawa19_mks",
+        host="localhost",
+        user="root",
+        password="1234",
+        database="mks",
     )
     
 # Comitting changes to SQL Database
