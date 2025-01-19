@@ -4,3 +4,4 @@ PyJWT==2.10.1  # JSON Web Token support for authentication
 python-dotenv==1.0.1  # To load environment variables from .env file
 cryptography==44.0.0  # For secure encryption/decryption
 mysql-connector-python==9.1.0  # MySQL database connection
+firebirdsql==1.3.2

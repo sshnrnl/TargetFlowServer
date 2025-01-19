@@ -1,10 +1,11 @@
 from os.path import dirname, basename, isfile, join
 import glob
-from flask import Flask, render_template, request, redirect, url_for, make_response, session, jsonify, Response
-from flask_cors import CORS, cross_origin
+from flask import Flask, render_template, request, redirect, url_for, make_response, session, jsonify, Response # type: ignore
+from flask_cors import CORS, cross_origin # type: ignore
 import os
-from dotenv import load_dotenv
+from dotenv import load_dotenv # type: ignore
 from hori import *
+import jwt # type: ignore
 
 load_dotenv()
 

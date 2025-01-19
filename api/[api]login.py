@@ -1,6 +1,4 @@
-from api.index import app, sqlconnect, sqlselect
-import jwt  # Import PyJWT for handling JWT tokens
-from flask import request, jsonify
+from api.index import app, sqlconnect, sqlselect, jwt,request, jsonify
 import os
 from datetime import datetime, timedelta, timezone
 
@@ -28,7 +26,9 @@ def login():
         
         # If the user exists, generate a JWT token
         payload = {
-            'sub': username,  # Subject of the token (typically the username or user ID)
+            'id': user[0][0],  # Subject of the token (typically the username or user ID)
+            'username': user[0][1],  # Subject of the token (typically the username or user ID)
+            'role': user[0][3],  # Subject of the token (typically the username or user ID)
             'iat': datetime.now(timezone.utc),  # Issued at time (current time, timezone-aware)
             'exp': datetime.now(timezone.utc) + timedelta(hours=24)  # Expiration time (1 hour from now)
         }

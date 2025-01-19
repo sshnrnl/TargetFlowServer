@@ -1,0 +1,37 @@
+{
+  "mso": {
+    "KOCUS": "C-0057950",
+    "NAMCUS": "Customer C-0057950",
+    "KOWIL": "",
+    "KOTAX": "P",
+    "JTEMPO": 12,
+    "PPPN": 11.0
+  },
+  "mutso": {
+    "items": {
+      "B000171": {
+        "KOBAR": "B000171",
+        "NAMBAR": "TISU FACIAL MAHONI BESAR@24 PAK",
+        "HARGA": 14400.0,
+        "QTY": 20,
+        "TOTAL": 6912000.0,
+        "SATQTY": "DUS",
+        "KVRSIQTY": 24.0,
+        "SATHRG": "PAK",
+        "NOBUK": "00202500001"
+      },
+      "S-0053610": {
+        "KOBAR": "S-0053610",
+        "NAMBAR": "P. KLIP 6 x 10 (KACER) @12kg",
+        "HARGA": 42000.0,
+        "QTY": 10,
+        "TOTAL": 5040000.0,
+        "SATQTY": "DUS",
+        "KVRSIQTY": 12.0,
+        "SATHRG": "KG",
+        "NOBUK": "00202500001"
+      }
+    },
+    "JUMLAH": 11952000.0
+  }
+}

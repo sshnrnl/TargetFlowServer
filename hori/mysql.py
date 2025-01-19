@@ -7,15 +7,15 @@
 #############################################
 
 # Importing necessary library
-import mysql.connector
+import mysql.connector # type: ignore
 
 # Connecting to SQL Database
 def sqlconnect():
     return mysql.connector.connect(
-        host="localhost",
-        user="root",
-        password="1234",
-        database="mks",
+        host="103.145.227.179",
+        user="sebasti4_mks_developer",
+        password="Vq4UG9N8Cq6r",
+        database="sebasti4_mks",
     )
     
 # Comitting changes to SQL Database
