@@ -11,7 +11,7 @@ import firebirdsql # type: ignore
 def connect():
     return firebirdsql.connect(
         host='121706200748.IP-DYNAMIC.COM',
-        database='D:\OneSOS Ver 4.1\DataOneSOS\DataTEST.FDB',
+        database='D:/OneSOS Ver 4.1/DataOneSOS/DataTEST.FDB',
         port=3050,
         user='sysdba',
         password='masterkey'
@@ -20,7 +20,7 @@ def connect():
 # def connect():
 #     return firebirdsql.connect(
 #         host='localhost',
-#         database='C:/Users/SHAN/Downloads/DataTEST/data.FDB',
+#         database='C:/User s/SHAN/Downloads/DataTEST/data.FDB',
 #         port=3050,
 #         user='sysdba',
 #         password='masterkey'

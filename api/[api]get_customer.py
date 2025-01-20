@@ -31,7 +31,7 @@ def get_customer_details():
                 KOCUS, 
                 NAMCUS, 
                 COALESCE(ALIAS, NAMCUS) AS ALIAS_OR_NAME, 
-                ALAMAT1, 
+                COALESCE(ALAMAT1, '-') AS ALAMAT,
                 COALESCE(TELP, '-') AS TELP 
             FROM KOCUS 
             WHERE KOCUS = ?;
