@@ -13,7 +13,11 @@ app = Flask(__name__, static_folder=os.getcwd().replace('\\', "\\\\") + '/assets
 
 app.config['SECRET_KEY'] = os.urandom(24)
 
-CORS(app, resources={r'*': {'origin': ['*']}}, supports_credentials=True)
+CORS(
+    app,
+    resources={r"/*": {"origins": ["https://app.supplierplastik.com"]}},
+    supports_credentials=True,
+)
 
 route = glob.glob(join(dirname(__file__) ,"*.py"))
 __all__ = [ basename(f)[:-3] for f in route if isfile(f) and not f.endswith('__init__.py')]

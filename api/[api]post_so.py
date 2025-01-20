@@ -318,4 +318,4 @@ def get_customer_details(customer_id, cursor):
         'KOTAX':kotax,
         'JTEMPO':jtempo,
         "PPPN":pppn
-    }
+    }   
