@@ -172,7 +172,6 @@ def convert_item(items, nobuk, cursor, kosal):
             COALESCE(t.kosat, k.kobar) AS SATQTY,
             COALESCE(t.kvrsi, 1) AS kvrsiqty,
             k.kosat
-
         FROM kobar k
         LEFT JOIN tbkvrsi t ON k.kobar = t.kobar
         WHERE k.kobar IN ({placeholders})
