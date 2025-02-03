@@ -17,7 +17,7 @@ def sqlconnect():
         password="Vq4UG9N8Cq6r",
         database="sebasti4_mks",
     )
-    
+
 # Comitting changes to SQL Database
 def sqlcommit(connection):
     connection.commit()
