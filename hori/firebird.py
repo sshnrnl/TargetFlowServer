@@ -42,3 +42,4 @@ def select_range(tables, start=0, end=0, selection="*", condition='', connect=''
     cursor.execute(f'SELECT {selection} FROM {tables}{condition if not condition else f" WHERE {condition}"} {order if not order else f"ORDER BY "+order+" "+order_mode} ROWS {start} TO {end}')
     a=cursor.fetchall()
     return a
+

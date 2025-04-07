@@ -4,14 +4,26 @@ from flask import Flask, render_template, request, redirect, url_for, make_respo
 from flask_cors import CORS, cross_origin # type: ignore
 import os
 from dotenv import load_dotenv # type: ignore
+from flask_sqlalchemy import SQLAlchemy# type: ignore
 from hori import *
 import jwt # type: ignore
+import pymysql# type: ignore
+
+
+pymysql.install_as_MySQLdb()
 
 load_dotenv()
 
 app = Flask(__name__, static_folder=os.getcwd().replace('\\', "\\\\") + '/assets', template_folder='../pages', static_url_path='/assets')
-
 app.config['SECRET_KEY'] = os.urandom(24)
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')  # Load MySQL URL from .env
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
+    "pool_pre_ping": True,
+    "pool_recycle": 280,
+}
+
+db = SQLAlchemy(app)
 
 CORS(app, resources={r'*': {'origin': ['*']}}, supports_credentials=True)
 

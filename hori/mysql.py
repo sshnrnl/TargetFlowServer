@@ -12,7 +12,7 @@ import mysql.connector # type: ignore
 # Connecting to SQL Database
 def sqlconnect():
     return mysql.connector.connect(
-        host="103.145.227.179",
+        host="103.145.227.203",
         user="sebasti4_mks_developer",
         password="Vq4UG9N8Cq6r",
         database="sebasti4_mks",
