@@ -59,7 +59,7 @@ def post_sales_order():
     PPN=customer_detail["KOTAX"] # biasa PPN atau P
     PPNINCL='T'
     PPPN=customer_detail["PPPN"]  # ambil dari kocus bs berupa 10 atau 11
-    JPPN=items_detail["JUMLAH"] * PPPN / 100 # jumlah * pppn/100
+    JPPN=items_detail["JUMLAH"]/1.11 * PPPN / 100 # jumlah * pppn/100
     OTAX=''
     OTAXINCL='F'
     POTAX=0
@@ -146,6 +146,7 @@ def post_sales_order():
     cursor.execute(query, data)
     conn.commit()
 
+
     #closing connection
     cursor.close()
     conn.close()
@@ -171,7 +172,8 @@ def convert_item(items, nobuk, cursor, kosal):
             k.hjual,
             COALESCE(t.kosat, k.kobar) AS SATQTY,
             COALESCE(t.kvrsi, 1) AS kvrsiqty,
-            k.kosat
+            k.kosat,
+            coalesce(k.minhjual, k.hjual) as minhjual
         FROM kobar k
         LEFT JOIN tbkvrsi t ON k.kobar = t.kobar
         WHERE k.kobar IN ({placeholders})
@@ -186,8 +188,9 @@ def convert_item(items, nobuk, cursor, kosal):
     jumlah=0
     for row in results:
         # Calculate the total and add item details to the return dictionary
-        kobar, nambar, hjual, satqty, kvrsiqty,sathrg = row
+        kobar, nambar, hjual, satqty, kvrsiqty,sathrg, minhjual = row
         qty = items.get(kobar, 0)  # Get quantity from items, default to 0 if not found
+        hjual = minhjual if qty >= 10 else hjual  # Use min hjual if qty < 1
         total = hjual * qty * kvrsiqty
         
         return_value["items"][kobar] = {
