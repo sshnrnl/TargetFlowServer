@@ -8,7 +8,7 @@ from flask_sqlalchemy import SQLAlchemy# type: ignore
 from hori import *
 import jwt # type: ignore
 import pymysql# type: ignore
-
+from flask_migrate import Migrate
 
 pymysql.install_as_MySQLdb()
 
@@ -24,6 +24,7 @@ app.config["SQLALCHEMY_ENGINE_OPTIONS"] = {
 }
 
 db = SQLAlchemy(app)
+migrate = Migrate(app, db)
 
 CORS(app, resources={r'*': {'origin': ['*']}}, supports_credentials=True)
 

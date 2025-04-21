@@ -9,4 +9,4 @@
 
 from .mysql import *
 from .firebird import *
-from .func import token_required
+from .func import *

@@ -47,5 +47,6 @@ class TargetAssignment(db.Model):
     user = db.relationship("User")
 
 # Initialize the database
-with app.app_context():
-    db.create_all()
+# with app.app_context():
+#     db.create_all()
+    

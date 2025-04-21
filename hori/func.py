@@ -5,6 +5,24 @@ import os
 # Secret key used for encoding/decoding the JWT
 SECRET_KEY = os.getenv("SECRET_KEY")
 
+def decode_token():
+    tkn = request.headers.get('Authorization')
+    if not tkn:
+            return jsonify({"message": "Authorization header missing"}), 401
+        
+        # Pisahin Token dari 'Bearer'
+    tkn = tkn.split(" ")[1] if len(tkn.split()) > 1 else None
+    if not tkn:
+        return jsonify({"message": "Authorization header missing"}), 401
+    try:
+        # Decode the JWT token using the secret key and HS256 algorithm
+        decoded_token = jwt.decode(tkn, SECRET_KEY, algorithms=["HS256"])
+        return decoded_token
+    except jwt.ExpiredSignatureError:
+        return None  # Token has expired
+    except jwt.InvalidTokenError:
+        return None  # Invalid token
+    
 
 # Decorator validasi JWT
 def token_required(f):

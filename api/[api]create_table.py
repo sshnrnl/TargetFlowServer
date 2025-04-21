@@ -1,12 +1,14 @@
 from api.index import app, db, request, jsonify
 from datetime import datetime
 from api.database_model import Target, TargetAssignment, TargetDetail
-from api.index import token_required
+from api.index import token_required, decode_token
 
 @app.route('/api/v1/admin/create-target', methods=['POST'])
 @token_required
 def create_target():
     data = request.get_json()
+
+    payload=decode_token()
 
     # Extract values from input
     target_name = data.get("target-name")
@@ -16,11 +18,10 @@ def create_target():
     end_date = datetime.strptime(data.get("end-date"), "%Y-%m-%d")
     assigned_to = data.get("assigned-to", [])  # List of user IDs
     target_items = data.get("target-items", {})  # Dictionary of items
-
     try:
         # Insert into Target table
         new_target = Target(
-            author=1,  # Change dynamically if needed
+            author=payload["id"],  # Change dynamically if needed
             target_name=target_name,
             description=description,
             prize=str(prize),

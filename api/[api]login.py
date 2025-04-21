@@ -10,7 +10,7 @@ def login():
     try:
         # Get user credentials from the request body
         user_data = request.json
-        username = user_data.get('username')
+        username = user_data.get('username').upper()
         password = user_data.get('password')
 
         # Establish database connection and fetch user details

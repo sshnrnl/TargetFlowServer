@@ -8,3 +8,4 @@ firebirdsql==1.3.2
 PyMySQL==1.1.1
 SQLAlchemy==2.0.39
 Flask-SQLAlchemy==3.1.1  # ORM support for Flask
+Flask-Migrate==3.1.0  # Database migration support for Flask
