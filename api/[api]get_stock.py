@@ -8,7 +8,7 @@ def get_stock_list():
     cursor=conn.cursor()
     cursor.execute("""SELECT b.KoBar, b.NamBar, b.KoKel, b.NamKel, (b.Qty / COALESCE(t.Kvrsi, 1)) SisaStok, COALESCE(t.KoSat, b.KoSat) KoSat FROM YKS_SISASTOK('TBKOBAR.KoGud = ''GDG''') b LEFT OUTER JOIN TBKVRSI t ON (b.KoBar=t.KoBar)""")
     a=cursor.fetchall()
-
+    conn.close()
     return jsonify(
         items=a,
         items_count=len(a),

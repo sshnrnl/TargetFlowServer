@@ -37,4 +37,5 @@ def get_so():
     ROWS {1} TO {1+29}
         """)
     so_data=cursor.fetchall()
+    conn.close()
     return jsonify(so_data)

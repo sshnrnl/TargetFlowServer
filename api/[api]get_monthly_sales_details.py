@@ -26,6 +26,7 @@ def get_monthly_sales_details():
         "jumlah_invoice": monthly_data[1],
         "jumlah_customer": monthly_data[2]
     }
+    conn.close()
     return jsonify(output)
 
 
